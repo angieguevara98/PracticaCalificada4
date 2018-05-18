@@ -34,22 +34,19 @@ public class MainActivity extends AppCompatActivity {
         String username = edtusername.getText().toString();
         String password = edtpassword.getText().toString();
 
-        ApiService servicio = ApiServiceGenerator.createService(ApiService.class);
-        Call<ResponseMessage> call = null;
-
         if (username.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Usuario y Contraseña son campos requeridos", Toast.LENGTH_SHORT).show();
             return;
-        }else{
-            call = servicio.createAuth(username,password);
-
-            // Intent a = new Intent(this, MainActivity.class);
-            // startActivity(a);
         }
+
+
+        ApiService servicio = ApiServiceGenerator.createService(ApiService.class);
+        Call<Usuario> call = servicio.createAuth(username,password);
+
         final Intent a = new Intent(this, MainActivity.class);
-        call.enqueue(new Callback<ResponseMessage>() {
+        call.enqueue(new Callback<Usuario>() {
             @Override
-            public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 try {
 
                     int statusCode = response.code();
@@ -57,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (response.isSuccessful()) {
 
-                        ResponseMessage responseMessage = response.body();
+                        Usuario responseMessage = response.body();
                         Log.d(TAG, "responseMessage: " + responseMessage);
 
                         // Toast.makeText(LoginActivity.this, responseMessage.getMessage(), Toast.LENGTH_LONG).show();
@@ -79,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             @Override
-            public void onFailure(Call<ResponseMessage> call, Throwable t) {
+            public void onFailure(Call<Usuario> call, Throwable t) {
                 Log.e(TAG, "onFailure: " + t.toString());
                 Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
@@ -96,13 +93,13 @@ public class MainActivity extends AppCompatActivity {
         String password = edtpassword.getText().toString();
 
         ApiService servicio1 = ApiServiceGenerator.createService(ApiService.class);
-        Call<ResponseMessage> call = null;
+        Call<Usuario> call = null;
 
         call = servicio1.createUsuario(username,password);
 
-        call.enqueue(new Callback<ResponseMessage>() {
+        call.enqueue(new Callback<Usuario>() {
             @Override
-            public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 try {
 
                     int statusCode = response.code();
@@ -110,10 +107,10 @@ public class MainActivity extends AppCompatActivity {
 
                     if (response.isSuccessful()) {
 
-                        ResponseMessage responseMessage = response.body();
+                        Usuario responseMessage = response.body();
                         Log.d(TAG, "responseMessage: " + responseMessage);
 
-                        Toast.makeText(MainActivity.this, responseMessage.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, responseMessage.getUsername(), Toast.LENGTH_LONG).show();
 
 
                     } else {
@@ -131,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ResponseMessage> call, Throwable t) {
+            public void onFailure(Call<Usuario> call, Throwable t) {
                 Log.e(TAG, "onFailure: " + t.toString());
                 Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }

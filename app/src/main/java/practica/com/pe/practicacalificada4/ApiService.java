@@ -22,7 +22,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("/api/v1/usuarios")
-    Call<ResponseMessage> createUsuario(@Field("username") String username,
+    Call<Usuario> createUsuario(@Field("username") String username,
                                         @Field("password") String password);
 
 
@@ -43,8 +43,8 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("/api/v1/login")
-    Call<ResponseMessage> createAuth(@Field("username") String username,
-                                     @Field("password") String password);
+    Call<Usuario> createAuth(@Field("username") String username,
+                             @Field("password") String password);
 
 
 

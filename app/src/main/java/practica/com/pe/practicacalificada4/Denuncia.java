@@ -2,18 +2,19 @@ package practica.com.pe.practicacalificada4;
 
 public class Denuncia {
 
-    private String id_usuario;
+
+    private int id_usuario;
     private String ubicacion;
     private String imagen;
     private String descripcion;
     private String titulo;
     private int id;
 
-    public String getId_usuario() {
+    public int getId_usuario() {
         return id_usuario;
     }
 
-    public void setId_usuario(String id_usuario) {
+    public void setId_usuario(int id_usuario) {
         this.id_usuario = id_usuario;
     }
 
@@ -57,7 +58,6 @@ public class Denuncia {
         this.id = id;
     }
 
-    @Override
     public String toString() {
         return "Denuncia{" +
                 "id=" + id +
@@ -67,5 +67,4 @@ public class Denuncia {
                 ", imagen='" + imagen + '\'' +
                 '}';
     }
-
 }

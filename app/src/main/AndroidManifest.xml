@@ -33,6 +33,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
+
         <activity android:name=".Main2Activity"></activity>
     </application>
 
